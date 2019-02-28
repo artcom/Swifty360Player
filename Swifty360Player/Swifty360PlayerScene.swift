@@ -89,18 +89,20 @@ open class Swifty360PlayerScene: SCNScene {
         videoNode.swiftyDelegate = self
         return videoNode
     }
-
+    
     internal func getSphereNode(scene: SKScene) -> SCNNode {
         let sphereNode = SCNNode()
         sphereNode.position = SCNVector3Make(0.0, 0.0, 0.0)
-        sphereNode.geometry = SCNSphere(radius: 100.0)
+        let sphere: SCNSphere = SCNSphere(radius: 100.0)
+        sphere.segmentCount = 48
+        sphere.isGeodesic = false
+        sphereNode.geometry = sphere
         sphereNode.geometry?.firstMaterial?.diffuse.contents = scene
         sphereNode.geometry?.firstMaterial?.diffuse.minificationFilter = .linear
         sphereNode.geometry?.firstMaterial?.diffuse.magnificationFilter = .linear
         sphereNode.geometry?.firstMaterial?.isDoubleSided = true
         return sphereNode
     }
-
 }
 
 extension Swifty360PlayerScene: SwiftySKVideoNodeDelegate {
