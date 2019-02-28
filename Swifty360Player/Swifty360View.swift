@@ -147,9 +147,19 @@ open class Swifty360View: UIView {
 
     override open func didMoveToWindow() {
         super.didMoveToWindow()
+        
+        if (self.window == nil) {
+            stopMotionUpdates()
+        } else {
+            startMotionUpdates()
+        }
         cameraController.startMotionUpdates()
     }
-
+    
+    open func startMotionUpdates() {
+        cameraController.startMotionUpdates()
+    }
+    
     open func stopMotionUpdates() {
         cameraController.stopMotionUpdates()
     }
